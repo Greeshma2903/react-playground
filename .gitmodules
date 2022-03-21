@@ -1,0 +1,6 @@
+[submodule "simple-react"]
+	path = simple-react
+	url = .\\simple-react\\
+[submodule "understanding-state"]
+	path = understanding-state
+	url = .\\understanding-state\\
