@@ -1,6 +1,6 @@
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
-
+import NewExpense from "./components/NewExpenses/NewExpenses";
 // We don't need to import 'react' in every component from React 17
 // It's called under the hood by react (which is needed to render the jsx)
 // Previously 'react' was used to create elements like so:
@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Let's get started!</h1>
+      <NewExpense/>
       <Expenses expenses={expenses} />
     </div>
   );
