@@ -4,8 +4,8 @@ import "./Card.css";
 // props.children -> 'children' is a reserved keyword native to React, which renders the content between the opening and closing tags of components
 
 function Card(props) {
-  const cardClas = "card " + props.className;
-  return <div className={cardClas}>{props.children}</div>;
+  const cardClass = "card " + props.className;
+  return <div className={cardClass}>{props.children}</div>;
 }
 
 export default Card;

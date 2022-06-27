@@ -1,12 +1,12 @@
 import "./ExpenseForm.css";
 import { useState } from "react";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
-
-  // * alternate way of multiple states
+  // OR
+  // * alternate way of multiple states: single way
   //   const [userInput, setUserInput] = useState({
   //     enteredTitle: "",
   //     enteredDate: "",
@@ -56,15 +56,16 @@ const ExpenseForm = () => {
 
     const expenseData = {
       title: enteredTitle,
-      date: enteredDate,
       amount: enteredAmount,
+      date: new Date(enteredDate),
     };
-    console.log(expenseData);
 
     // * use of two-way binding. We used the state variables as temporary variables, and then stored the values into the object. then we reset the state varibles, and used it to empty the form fields (using 'value' attribute)
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+    props.onCancel();
   };
 
   return (
@@ -72,7 +73,11 @@ const ExpenseForm = () => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -96,6 +101,9 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
